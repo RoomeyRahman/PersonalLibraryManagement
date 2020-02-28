@@ -81,16 +81,16 @@ WSGI_APPLICATION = 'personalLibraryProject.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME' : 'personallibrary',
-        'USER' : 'roomey',
-        'PASSWORD' : '1234',
-        'HOST' : 'localhost',
-        'PORT' : '5432'
-    }
-}
+# DATABASES = {
+# 'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME' : 'personallibrary',
+#         'USER' : 'roomey',
+#         'PASSWORD' : '1234',
+#         'HOST' : 'localhost',
+#         'PORT' : '5432'
+#     }
+# }
 
 
 # Password validation
