@@ -1,12 +1,26 @@
 from django.shortcuts import render
 from .forms import *
 
+from .models import *
+
+from pprint import pprint
+
 # Create your views here.
 def home(request):
     return render(request, "personalLibrary/index.html")
 
 def bookCollection(request):
-    return render(request, "personalLibrary/myBookCollection.html")
+    books = Book.objects.all()
+    authors = Author.objects.all()
+    myBookCollections = MyBookCollection.objects.all()
+
+    context = {
+        "books": books,
+        "myBookCollection": myBookCollections,
+        "authors": authors
+    }
+
+    return render(request, "personalLibrary/myBookCollection.html", context)
 
 def addNewBook(request):
     if request.method == "POST":
