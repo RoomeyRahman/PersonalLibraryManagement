@@ -49,7 +49,7 @@ def addNewBook(request):
     return render(request, "personalLibrary/addBook.html", context)
 
 # Class based list view
-class EaListView(ListView):
+class EeListView(ListView):
     model = MyBookCollection
     template_name = "personalLibrary/myBookCollection.html"
 
@@ -78,5 +78,12 @@ class EeCreateView(SuccessMessageMixin,CreateView):
         obj = form.save(commit=False)
         obj.creupdated_by = self.request.user
         return super(EeCreateView, self).form_valid(form)
+
+class EeUpdateView(SuccessMessageMixin, UpdateView):
+    model = MyBookCollection
+    template_name = "personalLibrary/addBook.html"
+    success_url = reverse_lazy('personalLibrary:bookCollection')
+    form_class = MyBookCollectionForm
+    success_message = "Updated Successfully"
 
 

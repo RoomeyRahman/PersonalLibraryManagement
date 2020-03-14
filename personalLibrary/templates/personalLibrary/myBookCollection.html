@@ -28,6 +28,7 @@
                   <th>Rating</th>
                   <th>Review</th>
                   <th>Book</th>
+                  <th>Action</th>
                 </tr>
 
               {% for collection in myBookCollection %}
@@ -37,6 +38,9 @@
                     <td>{{ collection.myRating }}</td>
                     <td>{{ collection.myReview }}</td>
                     <td>{{ collection.book }}</td>
+                    <td style="width:105px;">
+                        <a class="btn btn-info" href="{% url 'personalLibrary:editBook' collection.id %}"><span class="fa fa-edit"></span></a>
+                    </td>
                  </tr>
               {% endfor %}
 
