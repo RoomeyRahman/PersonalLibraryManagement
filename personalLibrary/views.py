@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView,ListView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
 
 from .forms import *
 
@@ -61,4 +65,18 @@ class EaListView(ListView):
         }
 
         return context
+
+
+class EeCreateView(SuccessMessageMixin,CreateView):
+    model = MyBookCollection
+    template_name = "personalLibrary/addBook.html"
+    success_url = reverse_lazy('personalLibrary:bookCollection')
+
+    form_class = MyBookCollectionForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.creupdated_by = self.request.user
+        return super(EeCreateView, self).form_valid(form)
+
 
