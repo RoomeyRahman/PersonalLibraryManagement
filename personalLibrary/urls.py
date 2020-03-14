@@ -5,6 +5,7 @@ app_name = "personalLibrary"
 
 urlpatterns = [
     path('', home, name="home"),
-    path('bookCollection', bookCollection, name="bookCollection"),
+    # path('bookCollection', bookCollection, name="bookCollection"),
+    path('bookCollection', EaListView.as_view(), name="bookCollection"),
     path('book/add', addNewBook, name="addNewBook"),
 ]

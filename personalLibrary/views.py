@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.views.generic import TemplateView,ListView
+
 from .forms import *
 
 from .models import *
@@ -41,3 +43,22 @@ def addNewBook(request):
         "form": MyBookCollectionForm
     }
     return render(request, "personalLibrary/addBook.html", context)
+
+# Class based list view
+class EaListView(ListView):
+    model = MyBookCollection
+    template_name = "personalLibrary/myBookCollection.html"
+
+    def get_context_data(self, **kwargs):
+        books = Book.objects.all()
+        authors = Author.objects.all()
+        myBookCollections = MyBookCollection.objects.all()
+
+        context = {
+            "books": books,
+            "myBookCollection": myBookCollections,
+            "authors": authors
+        }
+
+        return context
+
